@@ -7,6 +7,8 @@ const Header: FC = () => {
   const routes = [
     { path: `/${ROUTES.Home}`, name: '主页' },
     { path: `/${ROUTES.Product}`, name: '产品' },
+    { path: `/${ROUTES.ReactApp}`, name: 'React' },
+    { path: `/${ROUTES.VueApp}`, name: 'Vue' },
   ];
   return (
     <div className={styles.header}>

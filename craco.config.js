@@ -1,27 +1,36 @@
-import { resolve } from 'path';
+const path = require('path');
+// const { name } = require('./package.json');
 
-export const devServer = {
-  port: '3000',
-};
-export const webpack = {
-  alias: {
-    '@': resolve(__dirname, 'src'),
-    '@assets': resolve(__dirname, 'src/assets'),
-    '@components': resolve(__dirname, 'src/components'),
-    '@constants': resolve(__dirname, 'src/constants'),
-    '@containers': resolve(__dirname, 'src/containers'),
-    '@hooks': resolve(__dirname, 'src/hooks'),
-    '@mocks': resolve(__dirname, 'src/mocks'),
-    '@routes': resolve(__dirname, 'src/routes'),
-    '@services': resolve(__dirname, 'src/services'),
-    '@styles': resolve(__dirname, 'src/styles'),
-    '@types': resolve(__dirname, 'src/types'),
-    '@utils': resolve(__dirname, 'src/utils'),
-    '@contexts': resolve(__dirname, 'src/contexts'),
+module.exports = {
+  reactScriptsVersion: 'react-scripts' /* (default value) */,
+  webpack: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+      '@assets': path.resolve(__dirname, 'src/assets'),
+      '@components': path.resolve(__dirname, 'src/components'),
+      '@constants': path.resolve(__dirname, 'src/constants'),
+      '@containers': path.resolve(__dirname, 'src/containers'),
+      '@hooks': path.resolve(__dirname, 'src/hooks'),
+      '@mocks': path.resolve(__dirname, 'src/mocks'),
+      '@routes': path.resolve(__dirname, 'src/routes'),
+      '@services': path.resolve(__dirname, 'src/services'),
+      '@styles': path.resolve(__dirname, 'src/styles'),
+      '@types': path.resolve(__dirname, 'src/types'),
+      '@utils': path.resolve(__dirname, 'src/utils'),
+      '@contexts': path.resolve(__dirname, 'src/contexts'),
+    },
+    configure(webpackConfig) {
+      // 配置扩展扩展名
+      webpackConfig.resolve.extensions = [...webpackConfig.resolve.extensions, ...['.scss', '.css']];
+
+      // webpackConfig.output.library = `${name}-[name]`;
+      // webpackConfig.output.libraryTarget = 'umd';
+      // webpackConfig.output.globalObject = 'window';
+      // webpackConfig.output.jsonpFunction = `webpackJsonp_${name}`;
+      return webpackConfig;
+    },
   },
-  configure(webpackConfig) {
-    // 配置扩展扩展名
-    webpackConfig.resolve.extensions = [...webpackConfig.resolve.extensions, ...['.scss', '.css']];
-    return webpackConfig;
+  devServer: {
+    port: 3000,
   },
 };
